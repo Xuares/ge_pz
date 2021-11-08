@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.27",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "ge_pz",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
