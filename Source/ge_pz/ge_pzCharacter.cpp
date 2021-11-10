@@ -43,8 +43,7 @@ Age_pzCharacter::Age_pzCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+	Age_pzCharacter::InitInventory();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -74,6 +73,24 @@ void Age_pzCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &Age_pzCharacter::OnResetVR);
+}
+
+bool Age_pzCharacter::CheckIsAndroid()
+{
+#if PLATFORM_ANDROID
+	return true;
+#endif
+	return false;
+}
+
+void Age_pzCharacter::InitInventory()
+{
+	InventoryComponent = CreateDefaultSubobject<UInventoryComponentC>(TEXT("InventoryC"));
+}
+
+UInventoryComponentC* Age_pzCharacter::GetInventory()
+{
+	return InventoryComponent;
 }
 
 
