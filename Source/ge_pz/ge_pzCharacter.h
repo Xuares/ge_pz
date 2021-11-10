@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Inventory/StorageC.h"
 #include "ge_pzCharacter.generated.h"
 
 UCLASS(config=Game)
-class Age_pzCharacter : public ACharacter
+class Age_pzCharacter : public ACharacter, public IStorageC
 {
 	GENERATED_BODY()
 
@@ -68,5 +69,14 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool CheckIsAndroid();
+	
+	UPROPERTY(Category=Character, VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
+	UInventoryComponentC* InventoryComponent;
+
+	virtual void InitInventory() override;
+	virtual UInventoryComponentC* GetInventory() override;
 };
 
