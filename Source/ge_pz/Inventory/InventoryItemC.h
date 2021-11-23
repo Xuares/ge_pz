@@ -13,6 +13,7 @@ UCLASS(Blueprintable)
 class GE_PZ_API UInventoryItemC : public UObject
 {
 public:
+	
 	GENERATED_BODY()
 
 	UPROPERTY(BlueprintReadWrite)

@@ -75,6 +75,15 @@ void Age_pzCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInp
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &Age_pzCharacter::OnResetVR);
 }
 
+void Age_pzCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	// find weapon
+	TArray<AActor*> Childs;
+	GetAllChildActors(Childs, true);
+	Childs.FindItemByClass<ABaseWeapon>(&Weapon);
+}
+
 bool Age_pzCharacter::CheckIsAndroid()
 {
 #if PLATFORM_ANDROID
