@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Inventory/StorageC.h"
+#include "Weapon/BaseWeapon.h"
 #include "ge_pzCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -29,6 +30,9 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
+
+	UPROPERTY(BlueprintReadOnly)
+	ABaseWeapon* Weapon;
 
 protected:
 
@@ -65,6 +69,7 @@ protected:
 	// End of APawn interface
 
 public:
+	virtual void BeginPlay() override;
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
